@@ -22,6 +22,8 @@ export type Ticket = {
   description: string
   levelId: number
   statusId: number
+  startDate: Date
+  endDate: Date
   createAt: Date
   updateAt: Date
 }
@@ -975,6 +977,8 @@ export namespace Prisma {
     description: string | null
     levelId: number | null
     statusId: number | null
+    startDate: Date | null
+    endDate: Date | null
     createAt: Date | null
     updateAt: Date | null
   }
@@ -985,6 +989,8 @@ export namespace Prisma {
     description: string | null
     levelId: number | null
     statusId: number | null
+    startDate: Date | null
+    endDate: Date | null
     createAt: Date | null
     updateAt: Date | null
   }
@@ -995,6 +1001,8 @@ export namespace Prisma {
     description: number
     levelId: number
     statusId: number
+    startDate: number
+    endDate: number
     createAt: number
     updateAt: number
     _all: number
@@ -1019,6 +1027,8 @@ export namespace Prisma {
     description?: true
     levelId?: true
     statusId?: true
+    startDate?: true
+    endDate?: true
     createAt?: true
     updateAt?: true
   }
@@ -1029,6 +1039,8 @@ export namespace Prisma {
     description?: true
     levelId?: true
     statusId?: true
+    startDate?: true
+    endDate?: true
     createAt?: true
     updateAt?: true
   }
@@ -1039,6 +1051,8 @@ export namespace Prisma {
     description?: true
     levelId?: true
     statusId?: true
+    startDate?: true
+    endDate?: true
     createAt?: true
     updateAt?: true
     _all?: true
@@ -1137,6 +1151,8 @@ export namespace Prisma {
     description: string
     levelId: number
     statusId: number
+    startDate: Date
+    endDate: Date
     createAt: Date
     updateAt: Date
     _count: TicketCountAggregateOutputType | null
@@ -1166,18 +1182,20 @@ export namespace Prisma {
     description?: boolean
     levelId?: boolean
     statusId?: boolean
+    startDate?: boolean
+    endDate?: boolean
     createAt?: boolean
     updateAt?: boolean
     level?: boolean | LevelArgs
     status?: boolean | StatusArgs
-    Contact?: boolean | ContactArgs
+    contact?: boolean | ContactArgs
   }
 
 
   export type TicketInclude = {
     level?: boolean | LevelArgs
     status?: boolean | StatusArgs
-    Contact?: boolean | ContactArgs
+    contact?: boolean | ContactArgs
   }
 
   export type TicketGetPayload<S extends boolean | null | undefined | TicketArgs> =
@@ -1189,14 +1207,14 @@ export namespace Prisma {
     [P in TruthyKeys<S['include']>]:
         P extends 'level' ? LevelGetPayload<S['include'][P]> :
         P extends 'status' ? StatusGetPayload<S['include'][P]> :
-        P extends 'Contact' ? ContactGetPayload<S['include'][P]> | null :  never
+        P extends 'contact' ? ContactGetPayload<S['include'][P]> | null :  never
   } 
     : S extends { select: any } & (TicketArgs | TicketFindManyArgs)
       ? {
     [P in TruthyKeys<S['select']>]:
         P extends 'level' ? LevelGetPayload<S['select'][P]> :
         P extends 'status' ? StatusGetPayload<S['select'][P]> :
-        P extends 'Contact' ? ContactGetPayload<S['select'][P]> | null :  P extends keyof Ticket ? Ticket[P] : never
+        P extends 'contact' ? ContactGetPayload<S['select'][P]> | null :  P extends keyof Ticket ? Ticket[P] : never
   } 
       : Ticket
 
@@ -1572,7 +1590,7 @@ export namespace Prisma {
 
     status<T extends StatusArgs= {}>(args?: Subset<T, StatusArgs>): Prisma__StatusClient<StatusGetPayload<T> | Null>;
 
-    Contact<T extends ContactArgs= {}>(args?: Subset<T, ContactArgs>): Prisma__ContactClient<ContactGetPayload<T> | Null>;
+    contact<T extends ContactArgs= {}>(args?: Subset<T, ContactArgs>): Prisma__ContactClient<ContactGetPayload<T> | Null>;
 
     private get _document();
     /**
@@ -4978,6 +4996,8 @@ export namespace Prisma {
     description: 'description',
     levelId: 'levelId',
     statusId: 'statusId',
+    startDate: 'startDate',
+    endDate: 'endDate',
     createAt: 'createAt',
     updateAt: 'updateAt'
   };
@@ -5009,11 +5029,13 @@ export namespace Prisma {
     description?: StringFilter | string
     levelId?: IntFilter | number
     statusId?: IntFilter | number
+    startDate?: DateTimeFilter | Date | string
+    endDate?: DateTimeFilter | Date | string
     createAt?: DateTimeFilter | Date | string
     updateAt?: DateTimeFilter | Date | string
     level?: XOR<LevelRelationFilter, LevelWhereInput>
     status?: XOR<StatusRelationFilter, StatusWhereInput>
-    Contact?: XOR<ContactRelationFilter, ContactWhereInput> | null
+    contact?: XOR<ContactRelationFilter, ContactWhereInput> | null
   }
 
   export type TicketOrderByWithRelationInput = {
@@ -5022,11 +5044,13 @@ export namespace Prisma {
     description?: SortOrder
     levelId?: SortOrder
     statusId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
     level?: LevelOrderByWithRelationInput
     status?: StatusOrderByWithRelationInput
-    Contact?: ContactOrderByWithRelationInput
+    contact?: ContactOrderByWithRelationInput
   }
 
   export type TicketWhereUniqueInput = {
@@ -5039,6 +5063,8 @@ export namespace Prisma {
     description?: SortOrder
     levelId?: SortOrder
     statusId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
     _count?: TicketCountOrderByAggregateInput
@@ -5057,6 +5083,8 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter | string
     levelId?: IntWithAggregatesFilter | number
     statusId?: IntWithAggregatesFilter | number
+    startDate?: DateTimeWithAggregatesFilter | Date | string
+    endDate?: DateTimeWithAggregatesFilter | Date | string
     createAt?: DateTimeWithAggregatesFilter | Date | string
     updateAt?: DateTimeWithAggregatesFilter | Date | string
   }
@@ -5221,11 +5249,13 @@ export namespace Prisma {
   export type TicketCreateInput = {
     title: string
     description: string
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
     level: LevelCreateNestedOneWithoutTicketInput
     status: StatusCreateNestedOneWithoutTicketInput
-    Contact?: ContactCreateNestedOneWithoutTicketInput
+    contact?: ContactCreateNestedOneWithoutTicketInput
   }
 
   export type TicketUncheckedCreateInput = {
@@ -5234,19 +5264,23 @@ export namespace Prisma {
     description: string
     levelId: number
     statusId: number
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
-    Contact?: ContactUncheckedCreateNestedOneWithoutTicketInput
+    contact?: ContactUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type TicketUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     level?: LevelUpdateOneRequiredWithoutTicketNestedInput
     status?: StatusUpdateOneRequiredWithoutTicketNestedInput
-    Contact?: ContactUpdateOneWithoutTicketNestedInput
+    contact?: ContactUpdateOneWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateInput = {
@@ -5255,9 +5289,11 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     levelId?: IntFieldUpdateOperationsInput | number
     statusId?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Contact?: ContactUncheckedUpdateOneWithoutTicketNestedInput
+    contact?: ContactUncheckedUpdateOneWithoutTicketNestedInput
   }
 
   export type TicketCreateManyInput = {
@@ -5266,6 +5302,8 @@ export namespace Prisma {
     description: string
     levelId: number
     statusId: number
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
   }
@@ -5273,6 +5311,8 @@ export namespace Prisma {
   export type TicketUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5283,6 +5323,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     levelId?: IntFieldUpdateOperationsInput | number
     statusId?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5525,6 +5567,8 @@ export namespace Prisma {
     description?: SortOrder
     levelId?: SortOrder
     statusId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
   }
@@ -5541,6 +5585,8 @@ export namespace Prisma {
     description?: SortOrder
     levelId?: SortOrder
     statusId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
   }
@@ -5551,6 +5597,8 @@ export namespace Prisma {
     description?: SortOrder
     levelId?: SortOrder
     statusId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
   }
@@ -6125,6 +6173,8 @@ export namespace Prisma {
   export type TicketCreateWithoutContactInput = {
     title: string
     description: string
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
     level: LevelCreateNestedOneWithoutTicketInput
@@ -6137,6 +6187,8 @@ export namespace Prisma {
     description: string
     levelId: number
     statusId: number
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
   }
@@ -6154,6 +6206,8 @@ export namespace Prisma {
   export type TicketUpdateWithoutContactInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     level?: LevelUpdateOneRequiredWithoutTicketNestedInput
@@ -6166,6 +6220,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     levelId?: IntFieldUpdateOperationsInput | number
     statusId?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6173,10 +6229,12 @@ export namespace Prisma {
   export type TicketCreateWithoutLevelInput = {
     title: string
     description: string
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
     status: StatusCreateNestedOneWithoutTicketInput
-    Contact?: ContactCreateNestedOneWithoutTicketInput
+    contact?: ContactCreateNestedOneWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutLevelInput = {
@@ -6184,9 +6242,11 @@ export namespace Prisma {
     title: string
     description: string
     statusId: number
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
-    Contact?: ContactUncheckedCreateNestedOneWithoutTicketInput
+    contact?: ContactUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutLevelInput = {
@@ -6224,6 +6284,8 @@ export namespace Prisma {
     description?: StringFilter | string
     levelId?: IntFilter | number
     statusId?: IntFilter | number
+    startDate?: DateTimeFilter | Date | string
+    endDate?: DateTimeFilter | Date | string
     createAt?: DateTimeFilter | Date | string
     updateAt?: DateTimeFilter | Date | string
   }
@@ -6231,10 +6293,12 @@ export namespace Prisma {
   export type TicketCreateWithoutStatusInput = {
     title: string
     description: string
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
     level: LevelCreateNestedOneWithoutTicketInput
-    Contact?: ContactCreateNestedOneWithoutTicketInput
+    contact?: ContactCreateNestedOneWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutStatusInput = {
@@ -6242,9 +6306,11 @@ export namespace Prisma {
     title: string
     description: string
     levelId: number
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
-    Contact?: ContactUncheckedCreateNestedOneWithoutTicketInput
+    contact?: ContactUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutStatusInput = {
@@ -6278,6 +6344,8 @@ export namespace Prisma {
     title: string
     description: string
     statusId: number
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
   }
@@ -6285,10 +6353,12 @@ export namespace Prisma {
   export type TicketUpdateWithoutLevelInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StatusUpdateOneRequiredWithoutTicketNestedInput
-    Contact?: ContactUpdateOneWithoutTicketNestedInput
+    contact?: ContactUpdateOneWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutLevelInput = {
@@ -6296,9 +6366,11 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     statusId?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Contact?: ContactUncheckedUpdateOneWithoutTicketNestedInput
+    contact?: ContactUncheckedUpdateOneWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateManyWithoutTicketInput = {
@@ -6306,6 +6378,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     statusId?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6315,6 +6389,8 @@ export namespace Prisma {
     title: string
     description: string
     levelId: number
+    startDate: Date | string
+    endDate: Date | string
     createAt?: Date | string
     updateAt?: Date | string
   }
@@ -6322,10 +6398,12 @@ export namespace Prisma {
   export type TicketUpdateWithoutStatusInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     level?: LevelUpdateOneRequiredWithoutTicketNestedInput
-    Contact?: ContactUpdateOneWithoutTicketNestedInput
+    contact?: ContactUpdateOneWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutStatusInput = {
@@ -6333,9 +6411,11 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     levelId?: IntFieldUpdateOperationsInput | number
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Contact?: ContactUncheckedUpdateOneWithoutTicketNestedInput
+    contact?: ContactUncheckedUpdateOneWithoutTicketNestedInput
   }
 
 

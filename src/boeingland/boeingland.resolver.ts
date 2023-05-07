@@ -27,11 +27,15 @@ export const createTicket = (args: {
   name: string;
   email: string;
   tel: string;
+  startDate: Date;
+  endDate: Date;
 }) =>
   prisma.ticket.create({
     data: {
       title: args.title,
       description: args.description,
+      startDate: args.startDate,
+      endDate: args.endDate,
       level: {
         connect: {
           levelId: args.levelId,
@@ -42,7 +46,7 @@ export const createTicket = (args: {
           statusId: args.statusId,
         },
       },
-      Contact: {
+      contact: {
         create: {
           name: args.name,
           age: args.age,

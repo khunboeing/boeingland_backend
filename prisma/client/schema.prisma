@@ -6,9 +6,11 @@ model Ticket {
   levelId     Int
   status      Status   @relation(fields: [statusId], references: [statusId])
   statusId    Int
+  contact     Contact?
+  startDate   DateTime
+  endDate     DateTime
   createAt    DateTime @default(now())
   updateAt    DateTime @updatedAt
-  Contact     Contact?
 }
 
 model Contact {
