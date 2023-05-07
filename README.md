@@ -7,3 +7,7 @@ git init
 yarn add typescript --save-dev
 
 npx tsc --init
+
+npx prisma init
+
+yarn start:dev
