@@ -29,6 +29,7 @@ model Level {
   levelId  Int      @id @default(autoincrement())
   name     String
   zone     String
+  price    Int
   Ticket   Ticket[]
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt

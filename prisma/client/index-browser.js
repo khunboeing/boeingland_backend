@@ -101,6 +101,7 @@ exports.Prisma.LevelScalarFieldEnum = {
   levelId: 'levelId',
   name: 'name',
   zone: 'zone',
+  price: 'price',
   createAt: 'createAt',
   updateAt: 'updateAt'
 };

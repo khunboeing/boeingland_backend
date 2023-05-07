@@ -10,11 +10,16 @@ export const createStatus = (args: { name: string }) =>
     },
   });
 
-export const createLevel = (args: { name: string; zone: string }) =>
+export const createLevel = (args: {
+  name: string;
+  zone: string;
+  price: number;
+}) =>
   prisma.level.create({
     data: {
       name: args.name,
       zone: args.zone,
+      price: args.price,
     },
   });
 

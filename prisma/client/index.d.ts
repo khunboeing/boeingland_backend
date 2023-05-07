@@ -51,6 +51,7 @@ export type Level = {
   levelId: number
   name: string
   zone: string
+  price: number
   createAt: Date
   updateAt: Date
 }
@@ -2975,16 +2976,19 @@ export namespace Prisma {
 
   export type LevelAvgAggregateOutputType = {
     levelId: number | null
+    price: number | null
   }
 
   export type LevelSumAggregateOutputType = {
     levelId: number | null
+    price: number | null
   }
 
   export type LevelMinAggregateOutputType = {
     levelId: number | null
     name: string | null
     zone: string | null
+    price: number | null
     createAt: Date | null
     updateAt: Date | null
   }
@@ -2993,6 +2997,7 @@ export namespace Prisma {
     levelId: number | null
     name: string | null
     zone: string | null
+    price: number | null
     createAt: Date | null
     updateAt: Date | null
   }
@@ -3001,6 +3006,7 @@ export namespace Prisma {
     levelId: number
     name: number
     zone: number
+    price: number
     createAt: number
     updateAt: number
     _all: number
@@ -3009,16 +3015,19 @@ export namespace Prisma {
 
   export type LevelAvgAggregateInputType = {
     levelId?: true
+    price?: true
   }
 
   export type LevelSumAggregateInputType = {
     levelId?: true
+    price?: true
   }
 
   export type LevelMinAggregateInputType = {
     levelId?: true
     name?: true
     zone?: true
+    price?: true
     createAt?: true
     updateAt?: true
   }
@@ -3027,6 +3036,7 @@ export namespace Prisma {
     levelId?: true
     name?: true
     zone?: true
+    price?: true
     createAt?: true
     updateAt?: true
   }
@@ -3035,6 +3045,7 @@ export namespace Prisma {
     levelId?: true
     name?: true
     zone?: true
+    price?: true
     createAt?: true
     updateAt?: true
     _all?: true
@@ -3131,6 +3142,7 @@ export namespace Prisma {
     levelId: number
     name: string
     zone: string
+    price: number
     createAt: Date
     updateAt: Date
     _count: LevelCountAggregateOutputType | null
@@ -3158,6 +3170,7 @@ export namespace Prisma {
     levelId?: boolean
     name?: boolean
     zone?: boolean
+    price?: boolean
     createAt?: boolean
     updateAt?: boolean
     Ticket?: boolean | Level$TicketArgs
@@ -4957,6 +4970,7 @@ export namespace Prisma {
     levelId: 'levelId',
     name: 'name',
     zone: 'zone',
+    price: 'price',
     createAt: 'createAt',
     updateAt: 'updateAt'
   };
@@ -5159,6 +5173,7 @@ export namespace Prisma {
     levelId?: IntFilter | number
     name?: StringFilter | string
     zone?: StringFilter | string
+    price?: IntFilter | number
     createAt?: DateTimeFilter | Date | string
     updateAt?: DateTimeFilter | Date | string
     Ticket?: TicketListRelationFilter
@@ -5168,6 +5183,7 @@ export namespace Prisma {
     levelId?: SortOrder
     name?: SortOrder
     zone?: SortOrder
+    price?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
     Ticket?: TicketOrderByRelationAggregateInput
@@ -5181,6 +5197,7 @@ export namespace Prisma {
     levelId?: SortOrder
     name?: SortOrder
     zone?: SortOrder
+    price?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
     _count?: LevelCountOrderByAggregateInput
@@ -5197,6 +5214,7 @@ export namespace Prisma {
     levelId?: IntWithAggregatesFilter | number
     name?: StringWithAggregatesFilter | string
     zone?: StringWithAggregatesFilter | string
+    price?: IntWithAggregatesFilter | number
     createAt?: DateTimeWithAggregatesFilter | Date | string
     updateAt?: DateTimeWithAggregatesFilter | Date | string
   }
@@ -5405,6 +5423,7 @@ export namespace Prisma {
   export type LevelCreateInput = {
     name: string
     zone: string
+    price: number
     createAt?: Date | string
     updateAt?: Date | string
     Ticket?: TicketCreateNestedManyWithoutLevelInput
@@ -5414,6 +5433,7 @@ export namespace Prisma {
     levelId?: number
     name: string
     zone: string
+    price: number
     createAt?: Date | string
     updateAt?: Date | string
     Ticket?: TicketUncheckedCreateNestedManyWithoutLevelInput
@@ -5422,6 +5442,7 @@ export namespace Prisma {
   export type LevelUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Ticket?: TicketUpdateManyWithoutLevelNestedInput
@@ -5431,6 +5452,7 @@ export namespace Prisma {
     levelId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Ticket?: TicketUncheckedUpdateManyWithoutLevelNestedInput
@@ -5440,6 +5462,7 @@ export namespace Prisma {
     levelId?: number
     name: string
     zone: string
+    price: number
     createAt?: Date | string
     updateAt?: Date | string
   }
@@ -5447,6 +5470,7 @@ export namespace Prisma {
   export type LevelUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5455,6 +5479,7 @@ export namespace Prisma {
     levelId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5721,18 +5746,21 @@ export namespace Prisma {
     levelId?: SortOrder
     name?: SortOrder
     zone?: SortOrder
+    price?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
   }
 
   export type LevelAvgOrderByAggregateInput = {
     levelId?: SortOrder
+    price?: SortOrder
   }
 
   export type LevelMaxOrderByAggregateInput = {
     levelId?: SortOrder
     name?: SortOrder
     zone?: SortOrder
+    price?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
   }
@@ -5741,12 +5769,14 @@ export namespace Prisma {
     levelId?: SortOrder
     name?: SortOrder
     zone?: SortOrder
+    price?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
   }
 
   export type LevelSumOrderByAggregateInput = {
     levelId?: SortOrder
+    price?: SortOrder
   }
 
   export type StatusCountOrderByAggregateInput = {
@@ -6049,6 +6079,7 @@ export namespace Prisma {
   export type LevelCreateWithoutTicketInput = {
     name: string
     zone: string
+    price: number
     createAt?: Date | string
     updateAt?: Date | string
   }
@@ -6057,6 +6088,7 @@ export namespace Prisma {
     levelId?: number
     name: string
     zone: string
+    price: number
     createAt?: Date | string
     updateAt?: Date | string
   }
@@ -6116,6 +6148,7 @@ export namespace Prisma {
   export type LevelUpdateWithoutTicketInput = {
     name?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6124,6 +6157,7 @@ export namespace Prisma {
     levelId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
