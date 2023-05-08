@@ -1,20 +1,24 @@
 //1
 
 import { PrismaClient } from "../../prisma/client";
+import {
+  ICreateLevel,
+  ICreateStatus,
+  ICreateTicket,
+  IGetTicketById,
+  IGetTicketByStatus,
+  IUpdateStatusTicketById,
+} from "./boeingland.interface";
 export const prisma = new PrismaClient();
 
-export const createStatus = (args: { name: string }) =>
+export const createStatus = (args: ICreateStatus) =>
   prisma.status.create({
     data: {
       name: args.name,
     },
   });
 
-export const createLevel = (args: {
-  name: string;
-  zone: string;
-  price: number;
-}) =>
+export const createLevel = (args: ICreateLevel) =>
   prisma.level.create({
     data: {
       name: args.name,
@@ -23,18 +27,7 @@ export const createLevel = (args: {
     },
   });
 
-export const createTicket = (args: {
-  title: string;
-  description: string;
-  levelId: number;
-  statusId: number;
-  age: number;
-  name: string;
-  email: string;
-  tel: string;
-  startDate: Date;
-  endDate: Date;
-}) =>
+export const createTicket = (args: ICreateTicket) =>
   prisma.ticket.create({
     data: {
       title: args.title,
@@ -59,5 +52,56 @@ export const createTicket = (args: {
           tel: args.tel,
         },
       },
+    },
+  });
+
+export const getAllTickets = () =>
+  prisma.ticket.findMany({
+    include: {
+      contact: true,
+      level: true,
+      status: true,
+    },
+  });
+
+export const getAllLevel = () => prisma.level.findMany({});
+
+export const getAllStatus = () => prisma.status.findMany({});
+
+export const getTicketByStatus = (args: IGetTicketByStatus) =>
+  prisma.status.findUnique({
+    where: {
+      statusId: args.statusId,
+    },
+    include: {
+      Ticket: {
+        include: {
+          contact: true,
+          level: true,
+          status: true,
+        },
+      },
+    },
+  });
+
+export const getTicketById = (args: IGetTicketById) =>
+  prisma.ticket.findUnique({
+    where: {
+      ticketId: args.ticketId,
+    },
+    include: {
+      contact: true,
+      level: true,
+      status: true,
+    },
+  });
+
+export const updateStatusTicketById = (args: IUpdateStatusTicketById) =>
+  prisma.ticket.update({
+    data: {
+      statusId: args.statusId,
+    },
+    where: {
+      ticketId: args.ticketId,
     },
   });
